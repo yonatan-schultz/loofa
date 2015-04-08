@@ -1,7 +1,8 @@
-<p id="notice"><%= notice %></p>
-
 <% 
 =begin %> 
+
+<p id="notice"><%= notice %></p>
+
 <p>
   <strong>Filename:</strong>
   <%= @document.filename %>
@@ -18,18 +19,23 @@
 </p>
 
 <% 
-=end %> 
+=end %>
+<div class="container"> 
 <p>
   <strong>We found the following problems:</strong>
   <% @document.parse %>
 </p>
 
 <% @document.parse.each do |f| %>
-<div class="alert alert-danger" role="alert">
+
 <%=	raw("I see that you are running <b>#{f[0]}</b>") %><br /><br />
-<%= raw(f[1]) %><br /><br />
+<div class="alert alert-danger" role="alert">
+	<%= raw(f[1]) %><br />
 </div>
 <% end %>
 <% @document.destroy %>
 <br /><br />
-<%= link_to 'Upload Another', new_document_path, :class => "btn btn-default" %>
+<div class="text-center"> 
+	<%= link_to 'Upload Another', new_document_path, :class => "btn btn-large btn-success" %>
+</div>
+</div>

@@ -2,7 +2,10 @@
 
 TODO:
 
-Make the output nice<br>
-Break document#parse out into helper methods<br>
-Validate lockfile contents on upload<br>
+Make the output nice
+
+Break document#parse out into helper methods
+
+Validate lockfile contents on upload
+
 Destroy file on finish

@@ -2,10 +2,7 @@
 
 TODO:
 
-Make the output nice
-Add bootstrap
-Break document#parse out into helper methods
-Validate lockfile contents on upload
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Make the output nice<br />
+Break document#parse out into helper methods<br />
+Validate lockfile contents on upload<br />
+Destroy file on finish

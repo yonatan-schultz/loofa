@@ -25,11 +25,11 @@
 </p>
 
 <% @document.parse.each do |f| %>
+<div class="alert alert-danger" role="alert">
 <%=	raw("I see that you are running <b>#{f[0]}</b>") %><br /><br />
 <%= raw(f[1]) %><br /><br />
+</div>
 <% end %>
 
-
-
 <br /><br />
-<%= link_to 'Upload Another', new_document_path %>
+<%= link_to 'Upload Another', new_document_path, :class => "btn btn-default" %>

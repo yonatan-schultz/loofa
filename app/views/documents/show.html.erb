@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<% 
+=begin %> 
+<p>
+  <strong>Filename:</strong>
+  <%= @document.filename %>
+</p>
+
+<p>
+  <strong>Content type:</strong>
+  <%= @document.content_type %>
+</p>
+
+<p>
+  <strong>File contents:</strong>
+  <%= @document.file_contents %>
+</p>
+
+<% 
+=end %> 
+<p>
+  <strong>We found the following problems:</strong>
+  <% @document.parse %>
+</p>
+
+<% @document.parse.each do |f| %>
+<%=	raw("I see that you are running <b>#{f[0]}</b>") %><br /><br />
+<%= raw(f[1]) %><br /><br />
+<% end %>
+
+
+
+<br /><br />
+<%= link_to 'Upload Another', new_document_path %>

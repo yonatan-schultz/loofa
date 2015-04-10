@@ -1,9 +1,16 @@
-newrelic_rpm: 'The latest version of this gem is <b>3.10.0.279</b>'
+#let's see what the latest version of the gem is 
+newrelic_rpm: 'The latest version of this gem is <b>3.11.2</b>. This is displaying because you are running an out of date gem. Please update immediately.'
+#this section is taken from https://docs.newrelic.com/docs/agents/ruby-agent/troubleshooting/incompatible-gems
 db-charmer: '<b>Problem:</b> The db-charmer gem has incompatibilities in how it patches Rails controllers. <br /><b>Solution:</b> Force New Relic to load and start before <code>DbCharmer.enable_controller_magic!</code> is called. For example, add the following to your <b>config/application.rb:</b><br />
 <pre>require ''newrelic_apm''<br />#NewRelic::Agent.manual_start<br />DbCharmer.enable_controller_magic!</pre>'
 escape_utils: '<b>Problem:</b> Use The escape_utils  gem is incompatible with automatic instrumentation for New Relic''s page load timing feature (sometimes referred to as real user monitoring or RUM). Due to the way escape_utils monkey-patches Rack, your whole HTML response may be escaped.<br /><br /><b>Solution:</b> If you see HTML source instead of the rendered page, use either of these options:<br />Remove the escape_utils gems.<br />Use manual instrumentation for page load timing.'
 right_http_connection: 'Problem: If the right_http_connection  gem is loaded after newrelic_rpm, it patches Net::HTTP class in a way that causes New Relic''s Externals instrumentation to be missed. Solution: Ensure that right_http_connection is required before newrelic_rpm.'
 ar-octopus: 'Problem: The ar-octopus  gem changes the way that ActiveRecord''s connection management works, breaking the Ruby agent''s ability to capture explain plans for long-running database queries. Solution: No known workaround - either remove the ar-octopus gem, or continue to use it, in which case no explain plans will be captured.'
+#this list is taken from https://newrelic.atlassian.net/wiki/display/SUP/Ruby+Support+Status#RubySupportStatus-Gemswithknownissues/incompatibilities
 rocketpants: 'This gem does not use ActionController::Base, so no out-of-the-box support for instrumentation is possible.'
 rails-api: 'This gem does not use ActionController::Base, so no out-of-the-box support for instrumentation is possible. Please use the ''rails-api-newrelic'' gem instead'
 grape: 'Grape is now supported by New Relic Ruby Agent as of 3.10.0.279. Please upgrade your Ruby agent version'
+ruby-units: 'Make sure that you are at the latest version of this gem. Any version prior to this fix: https://github.com/olbrich/ruby-units/pull/70/files will need to be upgraded.'
+webmock: 'Webmock disables outgoing Net::HTTP. Make sure that this gem is in the test group.'
+resque-multi-job-forks: 'Please upgrade to New Relic Ruby Agent version 3.9.7 or later.'
+resque-jobs-per-fork: 'Please upgrade to New Relic Ruby Agent version 3.9.7 or later.'

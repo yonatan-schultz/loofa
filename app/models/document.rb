@@ -13,15 +13,19 @@ class Document < ActiveRecord::Base
   	results = Array.new
   	version_results = Array.new
 
-  	if self.file_contents.lines.grep(/newrelic_rpm/) != [] then version_results.push(self.file_contents.lines.grep(/newrelic_rpm/)) end
+  	if self.file_contents.lines.grep(/newrelic_rpm/) != [] && self.file_contents.lines.grep(/newrelic_rpm/)[0].match(/\((.*?)\)/)[1] < '3.11.2' then version_results.push(self.file_contents.lines.grep(/newrelic_rpm/)) end
   	if self.file_contents.lines.grep(/escape_utils/) != [] then version_results.push(self.file_contents.lines.grep(/escape_utils/)) end
-	if self.file_contents.lines.grep(/db-charmer/) != [] then version_results.push(self.file_contents.lines.grep(/db-charmer/)) end
- 	if self.file_contents.lines.grep(/right_http_connection/) != [] then version_results.push(self.file_contents.lines.grep(/right_http_connection/)) end
+	  if self.file_contents.lines.grep(/db-charmer/) != [] then version_results.push(self.file_contents.lines.grep(/db-charmer/)) end
+ 	  if self.file_contents.lines.grep(/right_http_connection/) != [] then version_results.push(self.file_contents.lines.grep(/right_http_connection/)) end
   	if self.file_contents.lines.grep(/ar-octopus/) != [] then version_results.push(self.file_contents.lines.grep(/ar-octopus/)) end
   	if self.file_contents.lines.grep(/rocketpants/) != [] then version_results.push(self.file_contents.lines.grep(/rocketpants/)) end  	
    	if self.file_contents.lines.grep(/rails-api/) != [] then version_results.push(self.file_contents.lines.grep(/rails-api/)) end
-  	if self.file_contents.lines.grep(/grape/) != [] && self.file_contents.lines.grep(/newrelic_rpm/)[0] < '3.10.0.279' then version_results.push(self.file_contents.lines.grep(/grape/)) end
-  		
+  	if self.file_contents.lines.grep(/grape/) != [] && self.file_contents.lines.grep(/newrelic_rpm/)[0].match(/\((.*?)\)/)[1] < '3.10.0.279' then version_results.push(self.file_contents.lines.grep(/grape/)) end
+    if self.file_contents.lines.grep(/ruby-units/) != [] then version_results.push(self.file_contents.lines.grep(/ruby-units/)) end
+    if self.file_contents.lines.grep(/webmock/) != [] then version_results.push(self.file_contents.lines.grep(/webmock/)) end
+    if self.file_contents.lines.grep(/resque-multi-job-forks/) != [] && self.file_contents.lines.grep(/newrelic_rpm/)[0].match(/\((.*?)\)/)[1] < '3.9.7' then version_results.push(self.file_contents.lines.grep(/resque-multi-job-forks/)) end
+    if self.file_contents.lines.grep(/resque-jobs-per-fork/) != [] && self.file_contents.lines.grep(/newrelic_rpm/)[0].match(/\((.*?)\)/)[1] < '3.9.7' then version_results.push(self.file_contents.lines.grep(/resque-jobs-per-fork/)) end
+
   	version_results.each do |f|
   		f[0] = f[0].match(/\((.*?)\)/)[1]
   		f[1] = f[1].chomp.lstrip
